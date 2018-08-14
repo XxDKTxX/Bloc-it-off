@@ -7,14 +7,36 @@
               });
 
          $stateProvider
-             .state('home', {
+             .state('todo', {
                  url: '/',
-                 controller: 'HomeCtrl as home',
-                 templateUrl: '/templates/home.html'
+                 controller: 'todoController',
+                 templateUrl: '/templates/todo.html'
              });
-     }
+     };
+
 
      angular
-         .module('bloc-it-off', ['ui.router', 'firebase'])
-         .config(config);
+         .module('ToDo', ['ui.router', 'firebase'])
+         .config(config)
+         .controller('todoController',["$scope", "$firebaseArray",
+           function($scope, $firebaseArray) {
+             var ref = firebase.database().ref(todos);
+             var todos = $firebaseArray(ref);
+
+             $scope.todos = todos
+
+             $scope.addTodo = function(){
+              $scope.todos.$add({'title': $scope.newtodo, 'done':false})
+               $scope.newtodo = ''
+           };
+
+             $scope.clearCompleted = function(){
+              $scope.todos.forEach(function(item, index) {
+               console.log(item, index)
+                if (item.done) {
+                 $scope.todos.$remove(index);
+               }
+             })
+           };
+         }]);
  })();
