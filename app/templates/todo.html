@@ -10,15 +10,17 @@
 <body>
 
   <div class='todo_main'>
-    <form name="frm" ng-submit="addTodo()">
+    <h4> Today's Date:  {{date | date:'yyyy-MM-dd'}} <h4>
+     <form name="frm" ng-submit="addTodo()">
       <input type='text' name'newtodo' ng-model='newtodo' required />
       <button>Add ToDo</button>
     </form>
     <button ng-click="clearCompleted()">Clear finished tasks</button>
-    <ul>
-      <li ng-repeat='todo in todos'>
+    <ul style='list-style: none;'>
+      <li ng-repeat='todo in todos' ng-hide='dateFilter(todo)'>
         <input type='checkbox' ng-model='todo.done'/>
-        <span ng-class="{'done':todo.done}">{{todo.title}}</span>
+        <span>{{todo.title}}</span>
+        <span>{{todo.created | date : 'shortDate'}}</span>
       </li>
     </ul>
   </div>
