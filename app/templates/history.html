@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>history</title>
   <style>
+  .done{text-decoration: line-through; color: #ccc;}
   </style>
 </head>
 <body>
@@ -16,7 +17,7 @@
         <span> Created on </span>
     <li ng-repeat='todo in todos' ng-show='getHistory(todo)'>
         <input type='checkbox' ng-model='todo.done' ng-change="todos.$save(todo)"/>
-        <span>{{todo.title}}</span>
+        <span class="{'done' :todo.done}">{{todo.title}}</span>
         <span>{{todo.priority}}</span>
         <span>{{todo.created | date : 'shortDate'}}</span>
       </li>
