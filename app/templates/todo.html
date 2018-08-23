@@ -29,7 +29,7 @@
         <span> Priority </span>
         <span> Created on </span>
     <li ng-repeat='todo in todos' ng-hide='getHistory(todo)'>
-        <input type='checkbox' ng-model='todo.done' onClick="return confirm('are you sure?')"/>
+        <input type='checkbox' ng-model='todo.done' ng-change="todos.$save(todo)"/>
         <span>{{todo.title}}</span>
         <span>{{todo.priority}}</span>
         <span>{{todo.created | date : 'shortDate'}}</span>

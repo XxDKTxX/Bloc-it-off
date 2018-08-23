@@ -59,10 +59,11 @@
               $scope.newtodo = ''
            };
 
-           $scope.taskDone= function(todo) {
-             todo.done == 'true'
-
-           }
+           $scope.taskDone = function(todo) {
+               if (todo.done == true) {
+                    return firebase.database().ref(todos).child(todo).update(todo.done == true)
+            };
+          };
 
            //   $scope.clearCompleted = function(){
            //    $scope.todos.forEach(function(item, index) {
