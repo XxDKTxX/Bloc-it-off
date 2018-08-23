@@ -1,0 +1,27 @@
+<!doctype.html>
+<html lang="en" ng-app="ToDo">
+<head>
+  <meta charset="UTF-8">
+  <title>history</title>
+  <style>
+  </style>
+</head>
+<body>
+
+  <div class='history_main'>
+   <h4> Today's Date:  {{date | date:'yyyy-MM-dd'}} <h4>
+    <ul style='list-style: none;'>
+        <span> Task Description </span>
+        <span> Priority </span>
+        <span> Created on </span>
+    <li ng-repeat='todo in todos' ng-show='getHistory(todo)'>
+        <input type='checkbox' ng-model='todo.done'/>
+        <span>{{todo.title}}</span>
+        <span>{{todo.priority}}</span>
+        <span>{{todo.created | date : 'shortDate'}}</span>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>

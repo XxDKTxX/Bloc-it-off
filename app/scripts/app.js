@@ -7,10 +7,19 @@
               });
 
          $stateProvider
+
              .state('todo', {
                  url: '/',
                  controller: 'todoController',
                  templateUrl: '/templates/todo.html'
+             });
+
+          $stateProvider
+
+             .state('history', {
+                 url: '/taskhistory',
+                 controller: 'todoController',
+                 templateUrl: '/templates/history.html'
              });
      };
 
@@ -38,22 +47,30 @@
               };
             };
 
+            $scope.getHistory = function(todo){
+              if (todo.done == true || $scope.currentTime - $scope.weekMs >=  todo.created ) {
+                return true;
+            };
+          };
+
              $scope.todos = todos
-
              $scope.addTodo = function(){
-              $scope.todos.$add({'title': $scope.newtodo, 'done': false, 'created': firebase.database.ServerValue.TIMESTAMP.toMillis() })
-               $scope.newtodo = ''
+              $scope.todos.$add({'title': $scope.newtodo, 'done': false, 'priority': $scope.priority, 'created': $scope.currentTime })
+              $scope.newtodo = ''
            };
 
-             $scope.clearCompleted = function(){
-              $scope.todos.forEach(function(item, index) {
-               console.log(item, index)
-                if (item.done) {
-                 $scope.todos.$remove(index);
-               };
-             });
-           };
+           $scope.taskDone= function(todo) {
+             todo.done == 'true'
 
+           }
 
-         }]);
- })();
+           //   $scope.clearCompleted = function(){
+           //    $scope.todos.forEach(function(item, index) {
+           //     console.log(item, index)
+           //      if (item.done) {
+           //       $scope.todos.$remove(index);
+           //     };
+           //   });
+           // };
+        }]);
+    })();

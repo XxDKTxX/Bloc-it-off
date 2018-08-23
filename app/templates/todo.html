@@ -13,14 +13,27 @@
     <h4> Today's Date:  {{date | date:'yyyy-MM-dd'}} <h4>
      <form name="frm" ng-submit="addTodo()">
       <input type='text' name'newtodo' ng-model='newtodo' required />
+        <select ng-model='priority' required>
+          <option value='' disabled selected hidden>Priority</option>
+          <option value='Low'>Low</option>
+          <option value='Medium'>Medium</option>
+          <option value='High'>High</option>
+        </select>
       <button>Add ToDo</button>
-    </form>
-    <button ng-click="clearCompleted()">Clear finished tasks</button>
+      </form>
+
+    <!-- <button ng-click="clearCompleted()">Clear finished tasks</button> -->
+
     <ul style='list-style: none;'>
-      <li ng-repeat='todo in todos' ng-hide='dateFilter(todo)'>
-        <input type='checkbox' ng-model='todo.done'/>
+        <span> Task Description </span>
+        <span> Priority </span>
+        <span> Created on </span>
+    <li ng-repeat='todo in todos' ng-hide='getHistory(todo)'>
+        <input type='checkbox' ng-model='todo.done' onClick="return confirm('are you sure?')"/>
         <span>{{todo.title}}</span>
+        <span>{{todo.priority}}</span>
         <span>{{todo.created | date : 'shortDate'}}</span>
+
       </li>
     </ul>
   </div>
