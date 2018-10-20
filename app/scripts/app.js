@@ -65,13 +65,13 @@
             };
           };
 
-           //   $scope.clearCompleted = function(){
-           //    $scope.todos.forEach(function(item, index) {
-           //     console.log(item, index)
-           //      if (item.done) {
-           //       $scope.todos.$remove(index);
-           //     };
-           //   });
-           // };
+             $scope.clearCompleted = function(){
+              $scope.todos.forEach(function(item, index) {
+               console.log(item, index)
+                if (item.done) {
+                 $scope.todos.$remove(index);
+               };
+             });
+           };
         }]);
     })();

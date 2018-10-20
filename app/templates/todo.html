@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>todo</title>
-  <style>
-  .done{text-decoration: line-through;color: #ccc;}
-  </style>
 </head>
 <body>
 
@@ -22,17 +19,16 @@
       <button>Add ToDo</button>
       </form>
 
-    <!-- <button ng-click="clearCompleted()">Clear finished tasks</button> -->
-
     <ul style='list-style: none;'>
-        <span> Task Description </span>
+        <!-- <span> Task Description </span>
         <span> Priority </span>
-        <span> Created on </span>
+        <span> Created on </span> -->
+        <!-- needs to be recoded into a table -->
     <li ng-repeat='todo in todos' ng-hide='getHistory(todo)'>
         <input type='checkbox' ng-model='todo.done' ng-change="todos.$save(todo)"/>
-        <span>{{todo.title}}</span>
-        <span>{{todo.priority}}</span>
-        <span>{{todo.created | date : 'shortDate'}}</span>
+        <span class='todo_title'>{{todo.title}} -</span>
+        <span class='todo_priority'>{{todo.priority}} priority -</span>
+        <span class='todo_timestamp'>Created on:{{todo.created | date : 'shortDate'}}</span>
 
       </li>
     </ul>
